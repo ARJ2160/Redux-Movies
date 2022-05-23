@@ -27,7 +27,7 @@ const MovieDetails = () => {
                     <>
                         <div className="section-left">
                             <div className="movie-title">
-                                {data.title}
+                                {data.Title}
                             </div>
                             <div className="movie-rating">
                                 <span>
