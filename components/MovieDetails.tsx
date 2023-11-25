@@ -41,12 +41,12 @@ export const MovieDetails = () => {
   useEffect(() => {
     dispatch(fetchAsyncMovieorShowDetail(imdbID));
     return () => {
-      dispatch(removeSelectedMovieorShow(imdbID));
+      dispatch(removeSelectedMovieorShow());
     };
   }, [dispatch, imdbID]);
 
   return (
-    <div className='movie-section bg-[#0F171E] text-white'>
+    <div className='movie-section bg-[#0F171E] text-white mt-20'>
       {Object.keys(data).length === 0 ? (
         <Loader />
       ) : (
