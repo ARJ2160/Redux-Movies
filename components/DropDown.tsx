@@ -2,13 +2,11 @@ import { Button, Input } from '@nextui-org/react';
 
 export const DropDown = ({
   isOpen,
-  toggle,
   movieSearch,
   setMovieSearch,
   searchQuery
 }: {
   isOpen: boolean;
-  toggle: () => void;
   movieSearch: string;
   setMovieSearch: (search: string) => void;
   searchQuery: () => void;
@@ -20,14 +18,13 @@ export const DropDown = ({
           ? 'grid grid-cols-1 text-center w-full h-fit p-5 items-center fixed top-20 z-10 dark:bg-white dark:text-black bg-blue-800 origin-top transition-all'
           : 'hidden'
       }
-      onClick={toggle}
     >
-      <div>
+      <div className='flex justify-center items-center'>
         <Input
           placeholder='Search...'
           value={movieSearch}
           onChange={e => setMovieSearch(e.target.value)}
-          className='border-2 border-black'
+          className='border-2 border-black w-[45vh]'
         />
         <Button className='ml-4' color='secondary' onClick={searchQuery}>
           Search

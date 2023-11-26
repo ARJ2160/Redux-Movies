@@ -20,7 +20,7 @@ export const Header = ({
       <nav className='bg-black glass h-20 w-full text-white flex justify-between items-center'>
         <div className='nav-logo flex justify-center items-center ml-10'>
           <Link to='/' className='nav--logo-primary'>
-            <div className='text-3xl'>IMDb Clone</div>
+            <div className='text-3xl mr-5'>IMDb Clone</div>
           </Link>
         </div>
         <div className='hidden md:flex justify-center items-center'>
@@ -28,7 +28,7 @@ export const Header = ({
             placeholder='Search...'
             value={movieSearch}
             onChange={e => setMovieSearch(e.target.value)}
-            className='border-2 border-black'
+            className='border-2 border-black w-[45vh]'
           />
           <Button className='ml-4' color='secondary' onClick={searchQuery}>
             Search
@@ -80,7 +80,6 @@ export const Header = ({
         </div>
         <DropDown
           isOpen={isOpen}
-          toggle={toggle}
           movieSearch={movieSearch}
           setMovieSearch={setMovieSearch}
           searchQuery={searchQuery}

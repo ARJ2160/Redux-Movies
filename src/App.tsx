@@ -15,6 +15,7 @@ function App() {
   const [isOpen, setIsOpen] = useState(false);
   const [movieSearch, setMovieSearch] = useState<string>('');
   const dispatch = useDispatch<AppDispatch>();
+
   const toggle = () => {
     setIsOpen(!isOpen);
   };
