@@ -7,18 +7,20 @@ import {
   PageNotFound
 } from '../components/index';
 import { useEffect, useState } from 'react';
-import { searchMovieHook } from '../utils/search';
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '../redux/store/store';
+import { fetchAsyncNavSearchData } from '../redux/store/movies/moviesSlice';
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
   const [movieSearch, setMovieSearch] = useState<string>('');
-
+  const dispatch = useDispatch<AppDispatch>();
   const toggle = () => {
     setIsOpen(!isOpen);
   };
 
   const searchQuery = () => {
-    searchMovieHook(movieSearch);
+    dispatch(fetchAsyncNavSearchData(movieSearch));
     setMovieSearch('');
   };
 
@@ -44,7 +46,6 @@ function App() {
           setMovieSearch={setMovieSearch}
           searchQuery={searchQuery}
         />
-
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/movie/:imdbID' element={<MovieDetails />} />
