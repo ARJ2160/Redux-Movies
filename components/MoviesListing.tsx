@@ -46,7 +46,7 @@ export const MoviesListing = () => {
   return (
     <div className='movie-wrapper text-white'>
       <div className='movie-list'>
-        <div className='text-5xl pt-24 pb-10'>Movies</div>
+        <div className='text-5xl py-10'>Movies</div>
         {Object.keys(movies).length === 0 ? (
           <Loader />
         ) : (

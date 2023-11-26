@@ -17,7 +17,7 @@ export const Header = ({
 }) => {
   return (
     <>
-      <nav className='bg-black glass h-20 w-full text-white flex justify-between items-center fixed z-10 top-0'>
+      <nav className='bg-black glass h-20 w-full text-white flex justify-between items-center'>
         <div className='nav-logo flex justify-center items-center ml-10'>
           <Link to='/' className='nav--logo-primary'>
             <div className='text-3xl'>IMDb Clone</div>

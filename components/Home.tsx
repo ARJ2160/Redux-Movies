@@ -17,7 +17,7 @@ export const Home = () => {
 
   return (
     <React.Fragment>
-      <div className='w-full banner-img px-10 py-5 bg-[#0F171E]'>
+      <div className='w-full banner-img px-10 py-4 bg-[#0F171E]'>
         <MoviesListing />
       </div>
     </React.Fragment>
