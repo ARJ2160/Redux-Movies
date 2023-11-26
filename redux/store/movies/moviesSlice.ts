@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import movieApi from '../../../common/apis/movieApi';
-import APIKEY from '../../../common/apis/movieApiKey';
+import { APIKEY } from '../../../common/apis/movieApiKey';
 
 const initialState = {
   movies: {},
@@ -10,15 +10,13 @@ const initialState = {
   searchTerm: {}
 };
 
-const movieText = 'Star Wars';
-const seriesText = 'Naruto';
-
 export const fetchAsyncMovies = createAsyncThunk(
   'movies/fetchAsyncMovies',
   async () => {
     const res = await movieApi.get(
-      `?apikey=${APIKEY}&s=${movieText}&type=movie`
+      `/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc`
     );
+    console.log('>>', res);
     return res.data;
   }
 );
@@ -27,7 +25,7 @@ export const fetchAsyncSeries = createAsyncThunk(
   'movies/fetchAsyncSeries',
   async () => {
     const res = await movieApi.get(
-      `?apikey=${APIKEY}&s=${seriesText}&type=series`
+      `/discover/tv?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc`
     );
     return res.data;
   }
@@ -70,13 +68,13 @@ const movieSlice = createSlice({
       return { ...state, loading: true };
     },
     [fetchAsyncMovies.fulfilled as any]: (state, { payload }) => {
-      return { ...state, movies: payload };
+      return { ...state, movies: payload.results };
     },
     [fetchAsyncMovies.rejected as any]: () => {
       console.log('Rejected');
     },
     [fetchAsyncSeries.fulfilled as any]: (state, { payload }) => {
-      return { ...state, shows: payload };
+      return { ...state, shows: payload.results };
     },
     [fetchAsyncMovieorShowDetail.fulfilled as any]: (state, { payload }) => {
       return { ...state, selectedMovies: payload };

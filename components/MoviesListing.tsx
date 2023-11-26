@@ -3,46 +3,40 @@ import { getAllMovies, getAllShows } from '../redux/store/movies/moviesSlice';
 import { Loader, MovieCard } from './index';
 import { MovieCardType } from '../types/types';
 
-const RenderMovies = ({ movies }: { movies: MovieCardType }): JSX.Element => {
-  if (movies.Response === 'True') {
+const RenderMovies = ({ movies }: { movies: MovieCardType[] }): JSX.Element => {
+  console.log('>>', movies);
+  if (Object.keys(movies).length > 0) {
     return (
-      <div className='gap-2 grid grid-cols-1 md:grid-cols-4 sm:grid-cols-2'>
-        {movies.Search.map((movie: any, index: number) => (
+      <div className='gap-2 grid grid-cols-1 md:grid-cols-6 sm:grid-cols-3'>
+        {movies.map((movie: any, index: number) => (
           <MovieCard key={index} data={movie} />
         ))}
       </div>
     );
   } else {
-    return (
-      <div className='movies-error'>
-        <h3 style={{ color: 'white' }}>{movies.Error}</h3>
-      </div>
-    );
+    return <Loader />;
   }
 };
 
-const RenderShows = ({ shows }: { shows: MovieCardType }): JSX.Element => {
-  if (shows.Response === 'True') {
+const RenderShows = ({ shows }: { shows: MovieCardType[] }): JSX.Element => {
+  console.log(">>", shows)
+  if (Object.keys(shows).length > 0) {
     return (
-      <div className='gap-2 grid grid-cols-1 md:grid-cols-4 sm:grid-cols-2'>
-        {shows.Search.map((show: any, index: number) => (
+      <div className='gap-2 grid grid-cols-1 md:grid-cols-6 sm:grid-cols-3'>
+        {shows.map((show: any, index: number) => (
           <MovieCard key={index} data={show} />
         ))}
       </div>
     );
   } else {
-    return (
-      <div className='movies-error'>
-        <h3 style={{ color: 'white' }}>{shows.Error}</h3>
-      </div>
-    );
+    return <Loader />;
   }
 };
 
 export const MoviesListing = () => {
   const movies = useSelector(getAllMovies);
   const shows = useSelector(getAllShows);
-
+  console.log('>>', shows);
   return (
     <div className='movie-wrapper text-white'>
       <div className='movie-list'>
