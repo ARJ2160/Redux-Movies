@@ -44,8 +44,13 @@ export const fetchAsyncMovieorShowDetail = createAsyncThunk(
 export const fetchAsyncNavSearchData = createAsyncThunk(
   'movies/fetchNavSearchData',
   async (navSearch: string) => {
-    const res = await movieApi.get(`?apikey=${APIKEY}&s=${navSearch}`);
-    return res.data;
+    const movies = await movieApi.get(
+      `?apikey=${APIKEY}&s=${navSearch}&type=movie`
+    );
+    const shows = await movieApi.get(
+      `?apikey=${APIKEY}&s=${navSearch}&type=series`
+    );
+    return { movie: movies.data, show: shows.data };
   }
 );
 
@@ -77,7 +82,7 @@ const movieSlice = createSlice({
       return { ...state, selectedMovies: payload };
     },
     [fetchAsyncNavSearchData.fulfilled as any]: (state, { payload }) => {
-      return { ...state, movies: payload };
+      return { ...state, movies: payload.movie, shows: payload.show };
     }
   }
 });

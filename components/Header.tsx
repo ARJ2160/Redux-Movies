@@ -28,7 +28,7 @@ export const Header = ({
             placeholder='Search...'
             value={movieSearch}
             onChange={e => setMovieSearch(e.target.value)}
-            className='border-2 border-black w-[45vh]'
+            className='w-[45vh]'
           />
           <Button className='ml-4' color='secondary' onClick={searchQuery}>
             Search
