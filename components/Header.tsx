@@ -17,10 +17,13 @@ export const Header = ({
 }) => {
   return (
     <>
-      <nav className='bg-black glass h-20 w-full text-white flex justify-between items-center'>
+      <nav className='bg-black h-20 w-full text-white flex justify-between items-center'>
         <div className='nav-logo flex justify-center items-center ml-10'>
           <Link to='/' className='nav--logo-primary'>
-            <div className='text-3xl mr-5'>IMDb Clone</div>
+            <img
+              className='w-28 h-18 mr-5'
+              src='https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/IMDB_Logo_2016.svg/2560px-IMDB_Logo_2016.svg.png'
+            ></img>
           </Link>
         </div>
         <div className='hidden md:flex justify-center items-center'>
@@ -49,34 +52,33 @@ export const Header = ({
           </div>
         </div>
         <div className='pr-8 hidden md:flex items-center'>
-          {/* {status !== 'authenticated' && ( */}
+          {/* {status !== 'authenticated' && (
           <Link to='/login' className='mx-5 cursor-pointer'>
             Sign In
           </Link>
-          {/* )} */}
-          {/* {status === 'authenticated' && ( */}
+          )}
+          {status === 'authenticated' && (
           <div className='flex items-center'>
             <Button
               color='secondary'
               onClick={() => {
-                // signOut();
                 fetch('/');
               }}
               className='mx-5 cursor-pointer'
             >
               Sign Out
             </Button>
-            {/* {session && session.user && ( */}
-            {/* <Image
-              className='rounded-full'
-              src={session.user.image as string}
-              width={'50'}
-              height={'50'}
-              alt='user image'
-            /> */}
-            {/* )} */}
+            {session && session.user && (
+              <Image
+               className='rounded-full'
+               src={session.user.image as string}
+               width={'50'}
+               height={'50'}
+               alt='user image'
+             />
+             )}
           </div>
-          {/* )} */}
+         )} */}
         </div>
         <DropDown
           isOpen={isOpen}

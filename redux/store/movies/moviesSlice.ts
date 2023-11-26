@@ -16,7 +16,6 @@ export const fetchAsyncMovies = createAsyncThunk(
     const res = await movieApi.get(
       `/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc`
     );
-    console.log('>>', res);
     return res.data;
   }
 );
@@ -34,7 +33,9 @@ export const fetchAsyncSeries = createAsyncThunk(
 export const fetchAsyncMovieorShowDetail = createAsyncThunk(
   'movies/fetchAsyncMovieorShowDetail',
   async (id: string | undefined) => {
-    const res = await movieApi.get(`?apikey=${APIKEY}&i=${id}&Plot=full`);
+    const res = await movieApi.get(
+      `/movie/${id}?api_key=${APIKEY}&language=en-US`
+    );
     return res.data;
   }
 );

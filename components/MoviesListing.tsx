@@ -4,10 +4,9 @@ import { Loader, MovieCard } from './index';
 import { MovieCardType } from '../types/types';
 
 const RenderMovies = ({ movies }: { movies: MovieCardType[] }): JSX.Element => {
-  console.log('>>', movies);
   if (Object.keys(movies).length > 0) {
     return (
-      <div className='gap-2 grid grid-cols-1 md:grid-cols-6 sm:grid-cols-3'>
+      <div className='gap-2 grid grid-cols-2 lg:grid-cols-6 md:grid-cols-4 sm:grid-cols-3'>
         {movies.map((movie: any, index: number) => (
           <MovieCard key={index} data={movie} />
         ))}
@@ -19,10 +18,9 @@ const RenderMovies = ({ movies }: { movies: MovieCardType[] }): JSX.Element => {
 };
 
 const RenderShows = ({ shows }: { shows: MovieCardType[] }): JSX.Element => {
-  console.log(">>", shows)
   if (Object.keys(shows).length > 0) {
     return (
-      <div className='gap-2 grid grid-cols-1 md:grid-cols-6 sm:grid-cols-3'>
+      <div className='gap-2 grid grid-cols-2 lg:grid-cols-6 md:grid-cols-4 sm:grid-cols-3'>
         {shows.map((show: any, index: number) => (
           <MovieCard key={index} data={show} />
         ))}
@@ -36,7 +34,7 @@ const RenderShows = ({ shows }: { shows: MovieCardType[] }): JSX.Element => {
 export const MoviesListing = () => {
   const movies = useSelector(getAllMovies);
   const shows = useSelector(getAllShows);
-  console.log('>>', shows);
+
   return (
     <div className='movie-wrapper text-white'>
       <div className='movie-list'>
