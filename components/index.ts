@@ -7,3 +7,4 @@ export { MoviesListing } from './MoviesListing';
 export { PageNotFound } from './PageNotFound';
 export { BurgerMenu, Logo } from './Icons';
 export { DropDown } from './DropDown';
+export { Loader } from './Loader';

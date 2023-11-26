@@ -6,11 +6,12 @@ const initialState = {
   movies: {},
   shows: {},
   selectedMovies: {},
+  loadingMovies: false,
   searchTerm: {}
 };
 
-const movieText = 'Harry Potter';
-const seriesText = 'Anime';
+const movieText = 'Star Wars';
+const seriesText = 'Naruto';
 
 export const fetchAsyncMovies = createAsyncThunk(
   'movies/fetchAsyncMovies',
@@ -60,11 +61,10 @@ const movieSlice = createSlice({
     }
   },
   extraReducers: {
-    [fetchAsyncMovies.pending as any]: () => {
-      console.log('Pending');
+    [fetchAsyncMovies.pending as any]: state => {
+      return { ...state, loading: true };
     },
     [fetchAsyncMovies.fulfilled as any]: (state, { payload }) => {
-      console.log('Fullfilled');
       return { ...state, movies: payload };
     },
     [fetchAsyncMovies.rejected as any]: () => {
@@ -85,6 +85,7 @@ const movieSlice = createSlice({
 export const { removeSelectedMovieorShow, searchMovies } = movieSlice.actions;
 export const getAllMovies = (state: any) => state.movies.movies;
 export const getAllShows = (state: any) => state.movies.shows;
+export const isLoadingShows = (state: any) => state.movies.loadingMovies;
 export const getSelectedMovieorShow = (state: any) =>
   state.movies.selectedMovies;
 export const searchTerm = (state: any) => state.movies.searchTerm;

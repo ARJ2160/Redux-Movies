@@ -1,4 +1,3 @@
-// import user from '../images/user.png';
 import { Input, Button } from '@nextui-org/react';
 import { BurgerMenu, DropDown } from './index';
 import { Link } from 'react-router-dom';

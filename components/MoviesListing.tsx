@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import { getAllMovies, getAllShows } from '../redux/store/movies/moviesSlice';
-import { MovieCard } from './index';
+import { Loader, MovieCard } from './index';
 import { MovieCardType } from '../types/types';
 
 const RenderMovies = ({ movies }: { movies: MovieCardType }): JSX.Element => {
@@ -22,7 +22,6 @@ const RenderMovies = ({ movies }: { movies: MovieCardType }): JSX.Element => {
 };
 
 const RenderShows = ({ shows }: { shows: MovieCardType }): JSX.Element => {
-  console.log('>>', shows);
   if (shows.Response === 'True') {
     return (
       <div className='gap-2 grid grid-cols-1 md:grid-cols-4 sm:grid-cols-2'>
@@ -48,11 +47,19 @@ export const MoviesListing = () => {
     <div className='movie-wrapper text-white'>
       <div className='movie-list'>
         <div className='text-5xl pt-24 pb-10'>Movies</div>
-        <RenderMovies movies={movies} />
+        {Object.keys(movies).length === 0 ? (
+          <Loader />
+        ) : (
+          <RenderMovies movies={movies} />
+        )}
       </div>
       <div className='show-list'>
         <div className='text-5xl my-10'>TV Shows</div>
-        <RenderShows shows={shows} />
+        {Object.keys(shows).length === 0 ? (
+          <Loader />
+        ) : (
+          <RenderShows shows={shows} />
+        )}
       </div>
     </div>
   );
