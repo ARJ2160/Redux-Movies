@@ -5,7 +5,7 @@ import { APIKEY } from '../../../common/movieApiKey';
 const initialState = {
   movies: [],
   shows: [],
-  selectedMovies: [{}],
+  selectedMovies: {},
   searchTerm: ''
 };
 
@@ -61,7 +61,7 @@ const movieSlice = createSlice({
       state.searchTerm = payload;
     },
     removeSelectedMovieorShow: state => {
-      state.selectedMovies = [{}];
+      state.selectedMovies = {}
     }
   },
   extraReducers: {
