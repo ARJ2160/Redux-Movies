@@ -1,13 +1,12 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import movieApi from '../../../common/apis/movieApi';
-import { APIKEY } from '../../../common/apis/movieApiKey';
+import movieApi from '../../../common/movieApi';
+import { APIKEY } from '../../../common/movieApiKey';
 
 const initialState = {
-  movies: {},
-  shows: {},
-  selectedMovies: {},
-  loadingMovies: false,
-  searchTerm: {}
+  movies: [],
+  shows: [],
+  selectedMovies: [{}],
+  searchTerm: ''
 };
 
 export const fetchAsyncMovies = createAsyncThunk(
@@ -43,13 +42,14 @@ export const fetchAsyncMovieorShowDetail = createAsyncThunk(
 export const fetchAsyncNavSearchData = createAsyncThunk(
   'movies/fetchNavSearchData',
   async (navSearch: string) => {
+    const searchQuery = navSearch.split(' ').join('+');
     const movies = await movieApi.get(
-      `?apikey=${APIKEY}&s=${navSearch}&type=movie`
+      `search/movie?query=${searchQuery}&api_key=${APIKEY}`
     );
     const shows = await movieApi.get(
-      `?apikey=${APIKEY}&s=${navSearch}&type=series`
+      `search/tv?query=${searchQuery}&api_key=${APIKEY}`
     );
-    return { movie: movies.data, show: shows.data };
+    return { movie: movies.data.results, show: shows.data.results };
   }
 );
 
@@ -61,7 +61,7 @@ const movieSlice = createSlice({
       state.searchTerm = payload;
     },
     removeSelectedMovieorShow: state => {
-      state.selectedMovies = {};
+      state.selectedMovies = [{}];
     }
   },
   extraReducers: {
@@ -89,7 +89,6 @@ const movieSlice = createSlice({
 export const { removeSelectedMovieorShow, searchMovies } = movieSlice.actions;
 export const getAllMovies = (state: any) => state.movies.movies;
 export const getAllShows = (state: any) => state.movies.shows;
-export const isLoadingShows = (state: any) => state.movies.loadingMovies;
 export const getSelectedMovieorShow = (state: any) =>
   state.movies.selectedMovies;
 export const searchTerm = (state: any) => state.movies.searchTerm;

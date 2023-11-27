@@ -15,7 +15,7 @@ import {
 } from '@heroicons/react/24/solid';
 import { AppDispatch } from '../redux/store/store';
 import { Loader } from './index';
-import { GET_MOVIE_POSTER } from '../common/apis/movieApiKey';
+import { GET_MOVIE_POSTER } from '../common/movieApiKey';
 
 export const MovieDetails = () => {
   const dispatch = useDispatch<AppDispatch>();

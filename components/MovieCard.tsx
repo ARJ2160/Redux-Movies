@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Card, CardBody, Image } from '@nextui-org/react';
 import { MovieCardType } from '../types/types';
-import { GET_MOVIE_POSTER } from '../common/apis/movieApiKey';
+import { GET_MOVIE_POSTER } from '../common/movieApiKey';
 
 export const MovieCard = ({ data }: { data: MovieCardType }) => {
   // const [isHover, setIsHover] = useState<boolean>(false);

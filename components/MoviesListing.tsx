@@ -4,31 +4,23 @@ import { Loader, MovieCard } from './index';
 import { MovieCardType } from '../types/types';
 
 const RenderMovies = ({ movies }: { movies: MovieCardType[] }): JSX.Element => {
-  if (Object.keys(movies).length > 0) {
-    return (
-      <div className='gap-2 grid grid-cols-2 lg:grid-cols-6 md:grid-cols-4 sm:grid-cols-3'>
-        {movies.map((movie: any, index: number) => (
-          <MovieCard key={index} data={movie} />
-        ))}
-      </div>
-    );
-  } else {
-    return <Loader />;
-  }
+  return (
+    <div className='gap-2 grid grid-cols-2 lg:grid-cols-6 md:grid-cols-4 sm:grid-cols-3'>
+      {movies.map((movie: any, index: number) => (
+        <MovieCard key={index} data={movie} />
+      ))}
+    </div>
+  );
 };
 
 const RenderShows = ({ shows }: { shows: MovieCardType[] }): JSX.Element => {
-  if (Object.keys(shows).length > 0) {
-    return (
-      <div className='gap-2 grid grid-cols-2 lg:grid-cols-6 md:grid-cols-4 sm:grid-cols-3'>
-        {shows.map((show: any, index: number) => (
-          <MovieCard key={index} data={show} />
-        ))}
-      </div>
-    );
-  } else {
-    return <Loader />;
-  }
+  return (
+    <div className='gap-2 grid grid-cols-2 lg:grid-cols-6 md:grid-cols-4 sm:grid-cols-3'>
+      {shows.map((show: any, index: number) => (
+        <MovieCard key={index} data={show} />
+      ))}
+    </div>
+  );
 };
 
 export const MoviesListing = () => {
