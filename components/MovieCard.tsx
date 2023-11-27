@@ -3,7 +3,13 @@ import { Card, CardBody, Image } from '@nextui-org/react';
 import { MovieCardType } from '../types/types';
 import { GET_MOVIE_POSTER } from '../common/movieApiKey';
 
-export const MovieCard = ({ data }: { data: MovieCardType }) => {
+export const MovieCard = ({
+  data,
+  type
+}: {
+  data: MovieCardType;
+  type: string;
+}) => {
   // const [isHover, setIsHover] = useState<boolean>(false);
   const { id, title, poster_path } = data;
   return (
@@ -13,7 +19,7 @@ export const MovieCard = ({ data }: { data: MovieCardType }) => {
         // onMouseOver={() => setIsHover(true)}
         // onMouseOut={() => setIsHover(false)}
       >
-        <Link to={`/movie/${id}`}>
+        <Link to={`/${type}/${id}`}>
           <Image
             shadow='sm'
             radius='lg'

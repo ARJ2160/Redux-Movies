@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { MoviesListing } from './index';
+import { MovieCarousel, MoviesListing } from './index';
 import {
   fetchAsyncMovies,
   fetchAsyncSeries
@@ -17,6 +17,7 @@ export const Home = () => {
 
   return (
     <React.Fragment>
+      <MovieCarousel />
       <div className='w-full banner-img px-10 py-4 bg-[#0F171E]'>
         <MoviesListing />
       </div>

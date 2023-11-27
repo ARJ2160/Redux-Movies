@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   fetchAsyncMovieorShowDetail,
@@ -21,9 +21,15 @@ export const MovieDetails = () => {
   const dispatch = useDispatch<AppDispatch>();
   const { imdbID } = useParams();
   const data = useSelector(getSelectedMovieorShow);
+  const location = useLocation();
 
   useEffect(() => {
-    dispatch(fetchAsyncMovieorShowDetail(imdbID));
+    dispatch(
+      fetchAsyncMovieorShowDetail({
+        id: imdbID,
+        type: location.pathname.split('/')[1]
+      })
+    );
     return () => {
       dispatch(removeSelectedMovieorShow());
     };
@@ -50,50 +56,52 @@ export const MovieDetails = () => {
               <Spacer y={8} />
               <div className='overflow-x-auto'>
                 <table className='w-full table-auto'>
-                  <tr>
-                    <td className='font-bold p-4 pr-0 text-right min-w-[120px]'>
-                      IMDB Rating
-                    </td>
-                    <td className='p-4 flex items-center'>
-                      <span className='w-6 h-6 inline-block mr-2 text-[#ff9e00]'>
-                        <StarIcon className='icon' />
-                      </span>
-                      {data.vote_average}
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className='font-bold p-4 pr-0 text-right min-w-[120px]'>
-                      IMDB Votes
-                    </td>
-                    <td className='p-4 flex items-center'>
-                      <span className='w-6 h-6 inline-block mr-2 text-rose-600'>
-                        <HandThumbUpIcon className='icon' />
-                      </span>
-                      {data.vote_count}
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className='font-bold p-4 pr-0 text-right min-w-[120px]'>
-                      Runtime
-                    </td>
-                    <td className='p-4 flex items-center'>
-                      <span className='w-6 h-6 inline-block mr-2 text-orange-700'>
-                        <FilmIcon className='icon' />
-                      </span>
-                      {data.runtime}
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className='font-bold p-4 pr-0 text-right min-w-[120px]'>
-                      Release Date
-                    </td>
-                    <td className='p-4 flex items-center'>
-                      <span className='w-6 h-6 inline-block mr-2 text-pink-600'>
-                        <CalendarIcon className='icon' />
-                      </span>
-                      {data.release_date}
-                    </td>
-                  </tr>
+                  <tbody>
+                    <tr>
+                      <td className='font-bold p-4 pr-0 text-right min-w-[120px]'>
+                        IMDB Rating
+                      </td>
+                      <td className='p-4 flex items-center'>
+                        <span className='w-6 h-6 inline-block mr-2 text-[#ff9e00]'>
+                          <StarIcon className='icon' />
+                        </span>
+                        {data.vote_average}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className='font-bold p-4 pr-0 text-right min-w-[120px]'>
+                        IMDB Votes
+                      </td>
+                      <td className='p-4 flex items-center'>
+                        <span className='w-6 h-6 inline-block mr-2 text-rose-600'>
+                          <HandThumbUpIcon className='icon' />
+                        </span>
+                        {data.vote_count}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className='font-bold p-4 pr-0 text-right min-w-[120px]'>
+                        Runtime
+                      </td>
+                      <td className='p-4 flex items-center'>
+                        <span className='w-6 h-6 inline-block mr-2 text-orange-700'>
+                          <FilmIcon className='icon' />
+                        </span>
+                        {data.runtime}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className='font-bold p-4 pr-0 text-right min-w-[120px]'>
+                        Release Date
+                      </td>
+                      <td className='p-4 flex items-center'>
+                        <span className='w-6 h-6 inline-block mr-2 text-pink-600'>
+                          <CalendarIcon className='icon' />
+                        </span>
+                        {data.release_date}
+                      </td>
+                    </tr>
+                  </tbody>
                 </table>
               </div>
               <Spacer y={8} />

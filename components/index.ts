@@ -8,3 +8,4 @@ export { PageNotFound } from './PageNotFound';
 export { BurgerMenu, Logo } from './Icons';
 export { DropDown } from './DropDown';
 export { Loader } from './Loader';
+export { MovieCarousel } from './MovieCarousel';

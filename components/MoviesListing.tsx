@@ -7,7 +7,9 @@ const RenderMovies = ({ movies }: { movies: MovieCardType[] }): JSX.Element => {
   return (
     <div className='gap-2 grid grid-cols-2 lg:grid-cols-6 md:grid-cols-4 sm:grid-cols-3'>
       {movies.map((movie: any, index: number) => (
-        <MovieCard key={index} data={movie} />
+        <div key={index}>
+          <MovieCard data={movie} type={'movie'} />
+        </div>
       ))}
     </div>
   );
@@ -17,7 +19,9 @@ const RenderShows = ({ shows }: { shows: MovieCardType[] }): JSX.Element => {
   return (
     <div className='gap-2 grid grid-cols-2 lg:grid-cols-6 md:grid-cols-4 sm:grid-cols-3'>
       {shows.map((show: any, index: number) => (
-        <MovieCard key={index} data={show} />
+        <div key={index}>
+          <MovieCard data={show} type={'tv'} />
+        </div>
       ))}
     </div>
   );
