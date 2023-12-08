@@ -21,7 +21,7 @@ export const MovieCarousel = () => {
       {popularMovies.length !== 0 ? (
         <Carousel
           showThumbs={false}
-          autoPlay={true}
+          autoPlay={false}
           transitionTime={3}
           infiniteLoop={true}
           showStatus={false}
@@ -32,24 +32,24 @@ export const MovieCarousel = () => {
                 style={{ textDecoration: 'none', color: 'white' }}
                 to={`/movie/${movie.id}`}
               >
-                <div className='h-[600px]'>
+                <div className='h-fit'>
                   <img
                     src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
                     className='m-auto block w-full'
                   />
                 </div>
-                <div className='absolute p-[5rem] bottom-0 h-[70%] flex flex-col content-end items-start opacity-100 transition-opacity w-full hover:opacity-100'>
-                  <div className='font-black text-6xl mb-2 text-left'>
+                <div className='absolute p-[5rem] sm:bottom-0 left-[-32px] bottom-8 h-[70%] flex flex-col content-end items-start opacity-100 transition-opacity w-full hover:opacity-100'>
+                  <div className='font-black lg:text-6xl md:text-4xl text-2xl mb-2 text-left'>
                     {movie.original_title}
                   </div>
-                  <div className='text-2xl mb-5 flex justify-center items-center'>
+                  <div className='md:text-2xl sm:text-xl text-base mb-5 flex justify-center items-center'>
                     <div>{movie.release_date}</div>
                     <div className='posterImage__rating ml-12 flex justify-center items-center'>
-                      <StarIcon className='icon w-10 h-10 mr-5 text-[#ff9e00]' />
+                      <StarIcon className='icon sm:w-10 sm:h-10 w-5 h-5 sm:mr-5 mr-1 text-[#ff9e00]' />
                       {movie.vote_average}
                     </div>
                   </div>
-                  <div className='posterImage__description text-2xl mb-1 flex text-left w-1/2'>
+                  <div className='hidden posterImage__description lg:text-2xl text-base mb-1 sm:flex text-left w-1/2'>
                     {movie.overview}
                   </div>
                 </div>

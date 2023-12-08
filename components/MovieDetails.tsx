@@ -22,6 +22,7 @@ export const MovieDetails = () => {
   const { imdbID } = useParams();
   const data = useSelector(getSelectedMovieorShow);
   const location = useLocation();
+  // const TYPE = location.pathname.split('/')[1];
 
   useEffect(() => {
     dispatch(
@@ -98,6 +99,7 @@ export const MovieDetails = () => {
                         <span className='w-6 h-6 inline-block mr-2 text-pink-600'>
                           <CalendarIcon className='icon' />
                         </span>
+                        {/* first_air_date, last_air_date */}
                         {data.release_date}
                       </td>
                     </tr>
@@ -121,23 +123,24 @@ export const MovieDetails = () => {
           <div className='p-10 md:pr-0'>
             <div className='text-4xl mb-10'>Production Companies</div>
             <div className='flex justify-around items-center flex-col sm:flex-row'>
-              {data.production_companies.map((data: any, i: number) => (
-                <Card
-                  shadow='sm'
-                  key={i}
-                  className='w-fit h-fit col-span-1 py-6 bg-transparent text-white'
-                >
-                  <Image
+              {data.production_companies &&
+                data.production_companies.map((data: any, i: number) => (
+                  <Card
                     shadow='sm'
-                    radius='lg'
-                    width='100%'
-                    className='object-fill min-w-fill min-h-[4rem] max-h-16 max-w-16'
-                    alt={'No Image Available'}
-                    src={GET_MOVIE_POSTER + data.logo_path}
-                  />
-                  <CardHeader>{data.name}</CardHeader>
-                </Card>
-              ))}
+                    key={i}
+                    className='w-fit h-fit col-span-1 py-6 bg-transparent text-white'
+                  >
+                    <Image
+                      shadow='sm'
+                      radius='lg'
+                      width='100%'
+                      className='object-fill min-w-fill min-h-[4rem] max-h-16 max-w-16'
+                      alt={'No Image Available'}
+                      src={GET_MOVIE_POSTER + data.logo_path}
+                    />
+                    <CardHeader>{data.name}</CardHeader>
+                  </Card>
+                ))}
             </div>
           </div>
         </div>
