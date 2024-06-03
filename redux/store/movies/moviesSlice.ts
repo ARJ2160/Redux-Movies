@@ -53,6 +53,14 @@ export const fetchAsyncNavSearchData = createAsyncThunk(
   }
 );
 
+export const getMovieReview = createAsyncThunk(
+  'movies/getReviews',
+  async (id: string | undefined) => {
+    const res = await movieApi.get(`movie/${id}/reviews`);
+    return res.data;
+  }
+);
+
 const movieSlice = createSlice({
   name: 'movies',
   initialState,
@@ -61,7 +69,7 @@ const movieSlice = createSlice({
       state.searchTerm = payload;
     },
     removeSelectedMovieorShow: state => {
-      state.selectedMovies = {}
+      state.selectedMovies = {};
     }
   },
   extraReducers: {
@@ -82,6 +90,12 @@ const movieSlice = createSlice({
     },
     [fetchAsyncNavSearchData.fulfilled as any]: (state, { payload }) => {
       return { ...state, movies: payload.movie, shows: payload.show };
+    },
+    [getMovieReview.fulfilled as any]: (state, { payload }) => {
+      return {
+        ...state,
+        selectedMovies: { ...state.selectedMovies, reviews: payload }
+      };
     }
   }
 });
